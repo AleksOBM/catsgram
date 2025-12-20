@@ -5,7 +5,7 @@ import lombok.EqualsAndHashCode;
 
 @Data
 @EqualsAndHashCode(of = "id")
-public class Image implements CatsFile {
+public class Movie implements CatsFile {
     private Long id;
     private long postId;
     private String originalFileName;

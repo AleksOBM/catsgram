@@ -1,0 +1,21 @@
+spring:
+  main:
+    ansi:
+      enabled: ALWAYS
+    log-startup-info: false
+    banner-mode:output: false
+  servlet:
+    multipart:
+      max-file-size: "50MB"
+      max-request-size: "50MB"
+
+catsgram:
+  image-directory: "java-rest/rest/resources/images"
+  movie-directory: "java-rest/rest/resources/movies"
+
+server:
+  port: 8080
+
+logging:
+  level:
+    root: WARN

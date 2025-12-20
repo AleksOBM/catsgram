@@ -42,14 +42,13 @@
 
     <!-- блок настройки процесса сборки -->
     <build>
-
         <resources>
             <resource>
                 <directory>java-rest/rest/resources</directory>
                 <filtering>true</filtering>
             </resource>
         </resources>
-        <!-- блок настройки плагинов -->
+
         <plugins>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -60,7 +59,6 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
-            <!-- конкретный плагин -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>

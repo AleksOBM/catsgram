@@ -1,21 +1,25 @@
+server.port: 8080
+
 spring:
   main:
-    ansi:
-      enabled: ALWAYS
     log-startup-info: false
-    banner-mode:output: false
+    banner-mode: CONSOLE
+  jackson.serialization.INDENT_OUTPUT: true
   servlet:
     multipart:
       max-file-size: "50MB"
       max-request-size: "50MB"
+  datasource:
+    url: jdbc:postgresql://localhost:5433/catsgram
+    username: dbuser
+    password: 12345
+    driver-class-name: org.postgresql.Driver
 
 catsgram:
   image-directory: "java-rest/rest/resources/images"
   movie-directory: "java-rest/rest/resources/movies"
 
-server:
-  port: 8080
-
 logging:
   level:
-    root: WARN
+    root: info
+    org.zalando.logbook: trace

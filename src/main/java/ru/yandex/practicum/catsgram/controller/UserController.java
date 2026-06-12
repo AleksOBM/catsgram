@@ -3,38 +3,41 @@ package ru.yandex.practicum.catsgram.controller;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import ru.yandex.practicum.catsgram.model.User;
+import ru.yandex.practicum.catsgram.dto.NewUserRequest;
+import ru.yandex.practicum.catsgram.dto.UpdateUserRequest;
+import ru.yandex.practicum.catsgram.dto.UserDto;
 import ru.yandex.practicum.catsgram.service.UserService;
 
-import java.util.Collection;
-import java.util.Optional;
+import java.util.List;
 
-@RequestMapping("/users")
 @RestController
 @RequiredArgsConstructor
+@RequestMapping("/users")
 public class UserController {
+	private final UserService userService;
 
-    private final UserService userService;
+	@PostMapping
+	@ResponseStatus(HttpStatus.CREATED)
+	public UserDto createUser(@RequestBody NewUserRequest userRequest) {
+		return userService.createUser(userRequest);
+	}
 
-    @GetMapping
-    public Collection<User> findAll() {
-        return userService.findAll();
-    }
+	@PutMapping("/{userId}")
+	public UserDto updateUser(@PathVariable("userId") long userId,
+	                          @RequestBody UpdateUserRequest request) {
 
-    @PostMapping
-    @ResponseStatus(HttpStatus.CREATED)
-    public User create(@RequestBody User user) {
-        return userService.create(user);
-    }
+		return userService.updateUser(userId, request);
+	}
 
-    @PutMapping
-    public User update(@RequestBody User newUser) {
-        return userService.update(newUser);
-    }
+	@GetMapping
+	@ResponseStatus(HttpStatus.OK)
+	public List<UserDto> getUsers() {
+		return userService.getUsers();
+	}
 
-    @GetMapping("/{id}")
-    public Optional<User> findById(@PathVariable long id) {
-        return userService.findById(id);
-    }
-
+	@GetMapping("/{userId}")
+	@ResponseStatus(HttpStatus.OK)
+	public UserDto getUserById(@PathVariable("userId") long userId) {
+		return userService.getUserById(userId);
+	}
 }

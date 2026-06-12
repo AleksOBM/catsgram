@@ -1,4 +1,4 @@
-package ru.yandex.practicum.catsgram.service;
+package ru.yandex.practicum.catsgram.service.files;
 
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;

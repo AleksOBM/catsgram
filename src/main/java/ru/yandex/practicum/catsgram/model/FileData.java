@@ -1,11 +1,7 @@
 package ru.yandex.practicum.catsgram.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Data;
-
-@Data
-@AllArgsConstructor
-public class FileData {
-    private final byte[] data;
-    private final String name;
+public record FileData(
+        byte[] data,
+        String name
+) {
 }

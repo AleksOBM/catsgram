@@ -1,4 +1,4 @@
-package ru.yandex.practicum.catsgram.service;
+package ru.yandex.practicum.catsgram.service.files;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -9,6 +9,8 @@ import ru.yandex.practicum.catsgram.exception.NotFoundException;
 import ru.yandex.practicum.catsgram.model.Image;
 import ru.yandex.practicum.catsgram.model.FileData;
 import ru.yandex.practicum.catsgram.model.Post;
+import ru.yandex.practicum.catsgram.service.util.IdentifyService;
+import ru.yandex.practicum.catsgram.service.PostService;
 
 import java.nio.file.Path;
 import java.util.HashMap;

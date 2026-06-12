@@ -1,4 +1,4 @@
-package ru.yandex.practicum.catsgram.service;
+package ru.yandex.practicum.catsgram.service.files;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Value;
@@ -7,6 +7,8 @@ import org.springframework.web.multipart.MultipartFile;
 import ru.yandex.practicum.catsgram.exception.ConditionsNotMetException;
 import ru.yandex.practicum.catsgram.exception.NotFoundException;
 import ru.yandex.practicum.catsgram.model.*;
+import ru.yandex.practicum.catsgram.service.util.IdentifyService;
+import ru.yandex.practicum.catsgram.service.PostService;
 
 import java.nio.file.Path;
 import java.util.HashMap;

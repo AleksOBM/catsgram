@@ -1,10 +1,10 @@
-package ru.yandex.practicum.catsgram.service;
+package ru.yandex.practicum.catsgram.service.util;
 
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.Map;
 
-@Service
+@Component
 public class IdentifyService {
     public <T> long getNextId(Map<Long, T> map) {
         long currentMaxId = map.keySet()

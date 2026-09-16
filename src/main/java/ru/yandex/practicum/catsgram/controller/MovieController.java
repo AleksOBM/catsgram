@@ -8,6 +8,7 @@ import ru.yandex.practicum.catsgram.model.FileData;
 import ru.yandex.practicum.catsgram.model.Movie;
 import ru.yandex.practicum.catsgram.service.files.MovieService;
 
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @RestController
@@ -16,24 +17,23 @@ public class MovieController {
 	private final MovieService movieService;
 
 	@GetMapping("/posts/{postId}/movies")
-	public List<Movie> getPostImages(@PathVariable("postId") long postId) {
+	public List<Movie> getPostMovies(@PathVariable("postId") long postId) {
 		return movieService.getPostMovies(postId);
 	}
 
-	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping("/posts/{postId}/movies")
-	public List<Movie> addPostImages(@PathVariable("postId") long postId,
-	                                 @RequestParam("movie") List<MultipartFile> files) {
+	public List<Movie> addPostMovie(@PathVariable("postId") long postId,
+	                                @RequestParam("movie") List<MultipartFile> files) {
 		return movieService.saveMovies(postId, files);
 	}
 
 	@GetMapping(value = "/movies/{movieId}", produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
-	public ResponseEntity<byte[]> downloadImage(@PathVariable long movieId) {
+	public ResponseEntity<byte[]> downloadMovie(@PathVariable long movieId) {
 		FileData movieData = movieService.getMovieData(movieId);
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentDisposition(
 				ContentDisposition.attachment()
-						.filename(movieData.name())
+						.filename(movieData.name(), StandardCharsets.UTF_8)
 						.build()
 		);
 

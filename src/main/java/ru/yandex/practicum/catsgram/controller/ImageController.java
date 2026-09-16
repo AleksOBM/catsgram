@@ -8,6 +8,7 @@ import ru.yandex.practicum.catsgram.model.FileData;
 import ru.yandex.practicum.catsgram.model.Image;
 import ru.yandex.practicum.catsgram.service.files.ImageService;
 
+import java.nio.charset.StandardCharsets;
 import java.util.List;
 
 @RestController
@@ -20,7 +21,6 @@ public class ImageController {
 		return imageService.getPostImages(postId);
 	}
 
-	@ResponseStatus(HttpStatus.CREATED)
 	@PostMapping("/posts/{postId}/images")
 	public List<Image> addPostImages(@PathVariable("postId") long postId,
 	                                 @RequestParam("image") List<MultipartFile> files) {
@@ -33,7 +33,7 @@ public class ImageController {
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentDisposition(
 				ContentDisposition.attachment()
-						.filename(fileData.name())
+						.filename(fileData.name(), StandardCharsets.UTF_8)
 						.build()
 		);
 

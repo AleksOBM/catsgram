@@ -8,8 +8,13 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("")
 public class HomeController {
 
-	@GetMapping
+	@GetMapping("/home")
 	public String homePage() {
+		return "Приветствуем вас в приложении Котограм";
+	}
+
+	@GetMapping("")
+	public String mainPage() {
 		return """
 				<pre>
 				     .d8888b.           888              .d8888b.
@@ -21,6 +26,27 @@ public class HomeController {
 				    Y88b  d88P 888  888 Y88b.       X88 Y88b  d88P 888    888  888 888  888  888
 				     "Y8888P"  "Y888888  "Y888  88888P'  "Y8888P88 888    "Y888888 888  888  888
 				</pre>
+				""";
+	}
+
+	@GetMapping("favicon.ico")
+	public String faviconIco() {
+		return """
+				        <p><br></p>
+				""";
+	}
+
+	@GetMapping(".well-known/appspecific/com.chrome.devtools.json")
+	public String devtools() {
+		return """
+				        <p><br></p>
+				""";
+	}
+
+	@GetMapping("sw.js")
+	public String swjs() {
+		return """
+				        <p><br></p>
 				""";
 	}
 }

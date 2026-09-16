@@ -14,10 +14,10 @@ import java.util.List;
 @RequiredArgsConstructor
 @RequestMapping("/users")
 public class UserController {
+
 	private final UserService userService;
 
 	@PostMapping
-	@ResponseStatus(HttpStatus.CREATED)
 	public UserDto createUser(@RequestBody NewUserRequest userRequest) {
 		return userService.createUser(userRequest);
 	}

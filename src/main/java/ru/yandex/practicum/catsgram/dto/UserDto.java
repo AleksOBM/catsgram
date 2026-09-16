@@ -15,6 +15,8 @@ public class UserDto {
 
 	private String email;
 
+	private String password = "*****";
+
 	@JsonProperty(access = JsonProperty.Access.READ_ONLY)
 	private Instant registrationDate;
 }

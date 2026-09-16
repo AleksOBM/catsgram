@@ -10,7 +10,7 @@ spring:
       max-file-size: "50MB"
       max-request-size: "50MB"
   datasource:
-    url: jdbc:postgresql://localhost:5433/catsgram
+    url: jdbc:postgresql://catsgram_db:5432/catsgram
     username: dbuser
     password: 12345
     driver-class-name: org.postgresql.Driver

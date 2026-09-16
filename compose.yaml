@@ -1,0 +1,78 @@
+volumes:
+  catsgram_db:
+  catsgram_db_init:
+  catsgram_app:
+
+services:
+  catsgram_app:
+    build:
+      dockerfile: Dockerfile
+    image: catsgram-image
+    container_name: catsgram-app
+    ports:
+      - "8080:8080"
+    volumes:
+      - catsgram_app:/home/catsgram_data
+    depends_on:
+      catsgram_db:
+        condition: service_healthy
+      catsgram_db_init:
+        condition: service_completed_successfully
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://catsgram_db:5432/catsgram
+      - SPRING_DATASOURCE_USERNAME=dbuser
+      - SPRING_DATASOURCE_PASSWORD=12345
+
+  catsgram_db:
+    image: postgres:16.1
+    container_name: catsgram-db
+#    ports:
+#      - "5433:5432"
+    volumes:
+      - catsgram_db:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_DB=catsgram
+      - POSTGRES_USER=dbuser
+      - POSTGRES_PASSWORD=12345
+    healthcheck:
+      test: pg_isready -q -d $$POSTGRES_DB -U $$POSTGRES_USER
+      timeout: 5s
+      interval: 5s
+      retries: 10
+
+  catsgram_db_init:
+    image: postgres:16.1
+    container_name: catsgram-db-init
+    depends_on:
+      catsgram_db:
+        condition: service_healthy
+    volumes:
+      - catsgram_db_init:/var/lib/postgresql/data/
+    entrypoint:
+      - bash
+      - -c
+      - |
+        set -e
+        psql postgresql://dbuser:12345@catsgram_db:5432/catsgram -v ON_ERROR_STOP=1 <<-EOSQL
+          CREATE TABLE IF NOT EXISTS users (
+            id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+            username VARCHAR(40) NOT NULL,
+            email VARCHAR(255) NOT NULL,
+            password VARCHAR(40) NOT NULL,
+            registration_date TIMESTAMP WITH TIME ZONE NOT NULL
+          );
+        
+          CREATE TABLE IF NOT EXISTS posts (
+            id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+            author_id BIGINT NOT NULL REFERENCES users(id),
+            description TEXT,
+            post_date TIMESTAMP WITH TIME ZONE NOT NULL
+          );
+        
+          CREATE TABLE IF NOT EXISTS image_storage (
+            id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+            original_name VARCHAR(255),
+            file_path VARCHAR(1024),
+            post_id BIGINT NOT NULL REFERENCES posts(id)
+          );
+        EOSQL

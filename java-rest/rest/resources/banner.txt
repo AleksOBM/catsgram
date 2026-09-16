@@ -1,0 +1,9 @@
+
+${AnsiColor.MAGENTA} .d8888b.           888            ${AnsiColor.CYAN}  .d8888b.
+${AnsiColor.MAGENTA}d88P  Y88b          888            ${AnsiColor.CYAN} d88P  Y88b
+${AnsiColor.MAGENTA}888    888          888            ${AnsiColor.CYAN} 888    888
+${AnsiColor.MAGENTA}888         8888b.  888888 .d8888b ${AnsiColor.CYAN} 888        888d888 8888b.  88888b.d88b.
+${AnsiColor.MAGENTA}888            "88b 888    88K     ${AnsiColor.CYAN} 888  88888 888P"      "88b 888 "888 "88b
+${AnsiColor.MAGENTA}888    888 .d888888 888    "Y8888b.${AnsiColor.CYAN} 888    888 888    .d888888 888  888  888
+${AnsiColor.MAGENTA}Y88b  d88P 888  888 Y88b.       X88${AnsiColor.CYAN} Y88b  d88P 888    888  888 888  888  888
+${AnsiColor.MAGENTA} "Y8888P"  "Y888888  "Y888  88888P'${AnsiColor.CYAN}  "Y8888P88 888    "Y888888 888  888  888

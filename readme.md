@@ -1,5 +1,16 @@
 # Catsgram
 
+![Static Badge](https://img.shields.io/badge/Java-21-green)
+![Static Badge](https://img.shields.io/badge/Spring_Boot-3.2.2-green)
+![Static Badge](https://img.shields.io/badge/REST-red)
+![Static Badge](https://img.shields.io/badge/MVC-green)
+![Static Badge](https://img.shields.io/badge/Lombok-red)
+![Static Badge](https://img.shields.io/badge/JdbcTemplate-8A2BE2)
+![Static Badge](https://img.shields.io/badge/PostgreSQL-16.1-blue)
+![Static Badge](https://img.shields.io/badge/NIO-538681)
+![Static Badge](https://img.shields.io/badge/Maven-orange)
+![Static Badge](https://img.shields.io/badge/docker_compose-blue)
+
 ![cats-image.jpeg](.img/cats-image.jpeg)
 
 <img alt="catsgram.png" src=".img/catsgram.png" width="500"/>  

@@ -53,5 +53,34 @@ API
 ```
 
 ### Database map
+```mermaid
+%%{init: { 'theme': 'dark', 'themeVariables': {
+    'fontFamily': 'Arial',
+    'fontSize': '10px'
+} }}%%
+erDiagram
+    POSTS {
+        bigint id PK
+        bigint author_id FK
+        text description
+        timestamp post_date
+    }
 
-<img alt="db_map" src=".img/catsgram_db_map.png" width="500"/>
+    IMAGE_STORAGE {
+        bigint id PK
+        varchar original_name
+        varchar file_path
+        bigint post_id FK
+    }
+
+    USERS {
+        bigint id PK
+        varchar username
+        varchar email
+        varchar password
+        timestamp registration_date
+    }
+
+    POSTS ||--o{ IMAGE_STORAGE : "contains"
+    USERS ||--o{ POSTS : "writes"
+```
